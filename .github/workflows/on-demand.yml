@@ -19,7 +19,7 @@ on:
       name:
         description: 'Your name goes here'
         type: string
-        required: true 
+        required: true
 
 jobs:
   log-the-inputs:
