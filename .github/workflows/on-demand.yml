@@ -17,7 +17,7 @@ on:
         required: false 
         type: boolean
       name:
-        description: 'Environment to run tests against'
+        description: 'Your name goes here'
         type: string
         required: true 
 
