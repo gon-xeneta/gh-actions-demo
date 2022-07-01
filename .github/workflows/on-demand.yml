@@ -16,9 +16,9 @@ on:
         description: 'Test scenario tags'
         required: false 
         type: boolean
-      environment:
+      name:
         description: 'Environment to run tests against'
-        type: environment
+        type: string
         required: true 
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
       - run: |
           echo "Log level: $LEVEL"
           echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
+          echo "Environment: $NAME"
         env:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
-          ENVIRONMENT: ${{ inputs.environment }}
+          NAME: ${{ inputs.name }}
