@@ -1,11 +1,7 @@
-# Events List are listed here:
-# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
-# 
+name: trigger-on-demand
 
-name: trigger-on-event
-
-on:
- workflow_dispatch:
+on: 
+  workflow_dispatch:
     inputs:
       logLevel:
         description: 'Log level'     
@@ -24,7 +20,6 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: true 
-
 
 jobs:
   log-the-inputs:
