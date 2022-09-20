@@ -36,9 +36,10 @@ for i in range(test_count):
         disk_score += 1
         print("Regular disk point")
 
-if ramdisk_score < disk_score:
-    print("Ramdisk is faster")
-elif disk_score < ramdisk_score:
-    print("Regular disk is faster")
+print("******************************")
+if ramdisk_score > disk_score:
+    print(f"Ramdisk is faster: {ramdisk_score} - {disk_score}")
+elif disk_score > ramdisk_score:
+    print(f"Regular disk is faster: {disk_score} - {ramdisk_score}")
 else:
     print("Doesn't really matter")
