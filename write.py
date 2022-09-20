@@ -29,16 +29,16 @@ for i in range(test_count):
     rmdsk = write_file(ram_disk_filepath, "Write to ramdisk     ")
     dsk = write_file(disk_filepath, "Write to regular disk")
 
-    if rmdsk > dsk:
+    if rmdsk < dsk:
         ramdisk_score += 1
         print("Ramdisk point")
-    elif dsk > rmdsk:
+    elif dsk < rmdsk:
         disk_score += 1
         print("Regular disk point")
 
-if ramdisk_score > disk_score:
+if ramdisk_score < disk_score:
     print("Ramdisk is faster")
-elif disk_score > ramdisk_score:
+elif disk_score < ramdisk_score:
     print("Regular disk is faster")
 else:
     print("Doesn't really matter")
