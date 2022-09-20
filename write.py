@@ -19,5 +19,9 @@ ram_disk_filepath = "/tmp/ramdisk/file.txt"
 temp_path = mkdtemp()
 disk_filepath = f"{temp_path}/file.txt"
 
-write_file(ram_disk_filepath, "Write to ramdisk")
-write_file(disk_filepath, "Write to regular disk")
+test_count = 10
+
+for i in range(test_count):
+    write_file(ram_disk_filepath, "Write to ramdisk     ")
+    write_file(disk_filepath, "Write to regular disk")
+
