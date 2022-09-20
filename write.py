@@ -26,8 +26,14 @@ ramdisk_score = 0
 disk_score = 0
 
 for i in range(test_count):
-    rmdsk = write_file(f"{ram_disk_filepath}_{i}", "Write to ramdisk     ")
-    dsk = write_file(f"{disk_filepath}_{i}", "Write to regular disk")
+    rmdsk_file = f"{ram_disk_filepath}_{i}"
+    dsk_file = f"{disk_filepath}_{i}"
+
+    rmdsk = write_file(rmdsk_file, "Write to ramdisk     ")
+    dsk = write_file(dsk_file, "Write to regular disk")
+
+    os.remove(rmdsk_file)
+    os.remove(dsk_file)
 
     if rmdsk < dsk:
         ramdisk_score += 1
