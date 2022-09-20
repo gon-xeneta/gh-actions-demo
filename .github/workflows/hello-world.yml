@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: my-step
         run: echo "Hello World!"
-      # - name: make ramdisk
-      #   run: |
-      #     sudo sudo mkdir -p /tmp/etcd
-      #     sudo mount -t tmpfs tmpfs /tmp/etcd
+      - name: make ramdisk
+        run: |
+          sudo sudo mkdir -p /tmp/etcd
+          sudo mount -t tmpfs tmpfs /tmp/etcd
       - name: Checkout
         uses: actions/checkout@v2
       - name: write to ramdisk
