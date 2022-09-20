@@ -1,6 +1,6 @@
 import time
 
-lines = 10_000_000
+lines = 100_000_000
 
 # file_path = "/tmp/etcd/file.txt"
 file_path = "./file.txt"
