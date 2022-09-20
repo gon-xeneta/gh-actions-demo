@@ -1,6 +1,6 @@
 import time
 from tempfile import mkdtemp
-
+import os
 
 def write_file(filepath, additional_message=None):
     lines = 100_000_000
@@ -15,8 +15,9 @@ def write_file(filepath, additional_message=None):
         additional_message += " "
     print(f"{additional_message}{elapsed}")
 
-ram_disk_filepath = "/tmp/etcd/file.txt"
-temp_path = mkdtemp("/test/")
+ram_disk_filepath = "/tmp/ramdisk/file.txt"
+temp_path = mkdtemp()
+os.mkdir(temp_path)
 disk_filepath = f"{temp_path}/file.txt"
 
 write_file(ram_disk_filepath, "Write to ramdisk")

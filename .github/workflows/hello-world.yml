@@ -14,8 +14,8 @@ jobs:
         run: echo "Hello World!"
       - name: make ramdisk
         run: |
-          sudo mkdir -p /tmp/etcd
-          sudo mount -t tmpfs tmpfs /tmp/etcd
+          sudo mkdir -p /tmp/ramdisk
+          sudo mount -t tmpfs tmpfs /tmp/ramdisk
       - name: Checkout
         uses: actions/checkout@v2
       - name: write to ramdisk
