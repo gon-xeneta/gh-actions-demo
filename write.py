@@ -2,7 +2,8 @@ import time
 
 lines = 10_000_000
 
-file_path = "/tmp/etcd/file.txt"
+# file_path = "/tmp/etcd/file.txt"
+file_path = "./file.txt"
 
 start = time.time()
 with open(file_path, 'w') as f:
