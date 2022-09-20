@@ -17,7 +17,6 @@ def write_file(filepath, additional_message=None):
 
 ram_disk_filepath = "/tmp/ramdisk/file.txt"
 temp_path = mkdtemp()
-os.mkdir(temp_path)
 disk_filepath = f"{temp_path}/file.txt"
 
 write_file(ram_disk_filepath, "Write to ramdisk")
