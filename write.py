@@ -18,7 +18,7 @@ def write_file(filepath, additional_message=None):
 
 ram_disk_filepath = "/tmp/ramdisk/file.txt"
 temp_path = mkdtemp()
-disk_filepath = f"{temp_path}/file.txt"
+disk_filepath = f"{temp_path}/file"
 
 test_count = 10
 
@@ -26,8 +26,8 @@ ramdisk_score = 0
 disk_score = 0
 
 for i in range(test_count):
-    rmdsk = write_file(ram_disk_filepath, "Write to ramdisk     ")
-    dsk = write_file(disk_filepath, "Write to regular disk")
+    rmdsk = write_file(f"{ram_disk_filepath}_{i}", "Write to ramdisk     ")
+    dsk = write_file(f"{disk_filepath}_{i}", "Write to regular disk")
 
     if rmdsk < dsk:
         ramdisk_score += 1
