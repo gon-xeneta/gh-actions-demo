@@ -1,6 +1,10 @@
 name: hello-world
 
-on: push
+on:
+  push:
+    branches:
+      - main
+      - "candidate-*"
 
 jobs:
   my-job:
@@ -8,3 +12,10 @@ jobs:
     steps:
       - name: my-step
         run: echo "Hello World!"
+      - name: make ramdisk
+        run: |
+          sudo sudo mkdir -p /tmp/etcd
+          sudo mount -t tmpfs tmpfs /tmp/etcd
+      - name: write to ramdisk
+        run: |
+          python3 write.py
