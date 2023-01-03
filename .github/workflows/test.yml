@@ -9,6 +9,7 @@ on:
       use-emoji:
         type: boolean
         description: Include  emojis
+        default: true
 
 jobs:
   log-the-inputs:
