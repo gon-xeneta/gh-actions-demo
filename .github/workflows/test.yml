@@ -6,6 +6,9 @@ on:
         description: 'Want to deploy on Prod'
         required: true
         default: 'false'
+      use-emoji:
+        type: boolean
+        description: Include  emojis
 
 jobs:
   log-the-inputs:
