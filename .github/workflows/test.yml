@@ -6,3 +6,10 @@ on:
         description: 'Want to deploy on Prod'
         required: true
         default: 'false'
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Hello World!"
