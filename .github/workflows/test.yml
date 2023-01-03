@@ -2,14 +2,11 @@ name: Update Auth0 Branding and prompts
 on:
   workflow_dispatch:
     inputs:
-      prod-deploy:
-        description: 'Want to deploy on Prod'
-        required: true
-        default: 'false'
       use-emoji:
         type: boolean
-        description: Include  emojis
+        description: 'Want to deploy on Prod'
         default: true
+        required: true
 
 jobs:
   log-the-inputs:
