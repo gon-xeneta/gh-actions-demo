@@ -6,7 +6,7 @@ on:
         type: boolean
         description: 'Want to deploy on Prod'
         required: true
-
+        default: 'false'
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
