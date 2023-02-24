@@ -1,0 +1,11 @@
+name: Reusable Job 3
+
+on:
+  workflow_call:  # Required to make this job reusable
+
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Reusable Job 3! Some tests?"

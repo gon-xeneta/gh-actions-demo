@@ -1,0 +1,43 @@
+name: Workflow that uses reusable jobs
+
+on: 
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Hello World!"
+  reused-workflow-job-1:
+    needs: [log-the-inputs]
+    # Format <org-or-user>/<repo>/.github/workflows/<reusable-job-name.yml>@<current-branch-name>
+    # NOTE  : do not delete the branch after merging; otherwise, the reference `@<current-branch-name>`
+    #         will throw an error  
+    # TODO  : once merged to `master`` or `main`, replace <current-branch-name> to `master` or `main`,
+    #         after the reference becomes `@master`, then we can delete the current branch
+    uses: gon-xeneta/gh-actions-demo/.github/workflows/reusable-job-1.yml@reusable-workflow
+  reused-workflow-job-2:
+    needs: [log-the-inputs]
+    # Format <org-or-user>/<repo>/.github/workflows/<reusable-job-name.yml>@<current-branch-name>
+    # NOTE  : do not delete the branch after merging; otherwise, the reference `@<current-branch-name>`
+    #         will throw an error  
+    # TODO  : once merged to `master`` or `main`, replace <current-branch-name> to `master` or `main`,
+    #         after the reference becomes `@master`, then we can delete the current branch
+    uses: gon-xeneta/gh-actions-demo/.github/workflows/reusable-job-2.yml@reusable-workflow
+  reused-workflow-job-3:
+    needs: [log-the-inputs]
+    # Format <org-or-user>/<repo>/.github/workflows/<reusable-job-name.yml>@<current-branch-name>
+    # NOTE  : do not delete the branch after merging; otherwise, the reference `@<current-branch-name>`
+    #         will throw an error  
+    # TODO  : once merged to `master`` or `main`, replace <current-branch-name> to `master` or `main`,
+    #         after the reference becomes `@master`, then we can delete the current branch
+    uses: gon-xeneta/gh-actions-demo/.github/workflows/reusable-job-3.yml@reusable-workflow
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [reused-workflow-job-1, reused-workflow-job-2]
+    steps:
+      - run: |
+          echo "Test step requiring reused jobs!"

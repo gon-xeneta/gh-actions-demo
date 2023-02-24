@@ -1,0 +1,11 @@
+name: Reusable Job 2
+
+on:
+  workflow_call:  # Required to make this job reusable
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Reusable Job 2! python linters maybe?"
