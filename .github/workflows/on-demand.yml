@@ -33,3 +33,10 @@ jobs:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
           NAME: ${{ inputs.name }}
+      - run: |
+          echo "Hello World!" >> hello-world.txt
+          echo "Hello World 2!" >> hello-world2.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hello-world
+          path: hello-world*.txt
