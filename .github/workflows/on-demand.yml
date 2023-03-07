@@ -25,11 +25,15 @@ jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
     steps:
+      - id: vars
+        run: |
+          # echo "Log level: $LEVEL"
+          # echo "Tags: $TAGS"
+          # echo "Environment: $NAME"
+          export var_true=abcd
+          export NON_EXISTING_VAR=false
+          echo "branch_name=${GITHUB_REF/refs\/heads\//}" >> $GITHUB_OUTPUT
+          echo "with_or=${{ NON_EXISTING_VAR || var_true }})" >> $GITHUB_OUTPUT
       - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $NAME"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
-          NAME: ${{ inputs.name }}
+          echo "pi-${{ steps.vars.outputs.branch_name }}"
+          echo "pi-${{ steps.vars.outputs.with_or }}"
