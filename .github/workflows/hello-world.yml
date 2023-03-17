@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - "candidate-*"
+    paths:
+      - "**"
+      - "!folder/*"
 
 jobs:
   my-job:
