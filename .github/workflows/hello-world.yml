@@ -1,7 +1,7 @@
 name: hello-world
 
 on:
-  push:
+  # push:
     # branches:
     #   - main
     #   - "candidate-*"
@@ -9,7 +9,7 @@ on:
     types: [opened, reopened, synchronize]
     paths:
       - "**"
-      - "!folder/*"
+      - "!folder/**"
 
 jobs:
   my-job:
