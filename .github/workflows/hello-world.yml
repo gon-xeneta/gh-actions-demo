@@ -2,9 +2,11 @@ name: hello-world
 
 on:
   push:
-    branches:
-      - main
-      - "candidate-*"
+    # branches:
+    #   - main
+    #   - "candidate-*"
+  pull_request:
+    types: [opened, reopened, synchronize]
     paths:
       - "**"
       - "!folder/*"
