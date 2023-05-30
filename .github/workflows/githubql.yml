@@ -1,0 +1,12 @@
+name: test githuqbl
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          pip install githubql
+          python githubql.py
