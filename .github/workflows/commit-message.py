@@ -1,10 +1,11 @@
+import re
 import os
-import json
 import nltk
+
 
 def check_imperative(paragraph):
     try:
-        # for _word in paragraph.split(" "):
+        paragraph = sanitize(paragraph)
         words = nltk.word_tokenize(nltk.sent_tokenize(paragraph)[0])
         # VBZ : Verb, 3rd person singular present, like 'adds', 'writes' etc
         # VBD : Verb, Past tense , like 'added', 'wrote' etc
@@ -22,6 +23,19 @@ def check_imperative(paragraph):
                     "`python -m nltk.downloader punkt"
                     " maxent_treebank_pos_tagger averaged_perceptron_tagger`")
         return
+
+
+def sanitize(paragraph):
+    # Check first word if Ticket number 
+    # e.g. BOX-1234 or feat(BOX-1234):
+    words = paragraph.split(" ")
+    first_word = words[0]
+    ticket_num_pattern = re.compile("([a-zA-Z]+)-(\d+)\)?:?$")
+    match = ticket_num_pattern.match(first_word)
+    if match:
+        # remove first word
+        return (" ").join(words[1:])
+    return paragraph
 
 
 if __name__ == "__main__":
