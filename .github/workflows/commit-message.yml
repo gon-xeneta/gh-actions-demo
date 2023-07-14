@@ -1,0 +1,41 @@
+name: Imperative Commit Messages
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - "**"
+
+jobs:
+  check-imperative-commit-message:
+    runs-on: ubuntu-latest # this can also be windows or mac
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+            ref: ${{ github.event.pull_request.head.sha }}
+            fetch-depth: 125
+      - name: Install nltk
+        run: |
+          pip3 install nltk
+          python3 -m nltk.downloader punkt \
+            maxent_treebank_pos_tagger averaged_perceptron_tagger
+      - name: Get commit messages
+        run: |
+          git show ${{ github.event.pull_request.base.sha }}
+          git show ${{ github.event.pull_request.head.sha }}
+          export GIT_COMMITS=$(git log --format=%s --ancestry-path ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          export OFFENDING_WORDS=$(python3 .github/workflows/commit-message.py)
+          echo "OFFENDING_WORDS<<EOF" >> $GITHUB_ENV
+          echo "$OFFENDING_WORDS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        if: ${{ env.OFFENDING_WORDS != '' }}
+        with:
+          message: |
+            ### :police_car: Git commit police here! :police_car:
+            Commits in this pull request may not in imperative:
+            ${{ env.OFFENDING_WORDS }}
+            -----
+            Please see our [git commit guidelines](https://xeneta.atlassian.net/wiki/spaces/Tech/pages/47743014/Git+Workflow+Guidelines#How-To-Write-Commit-Messages)
